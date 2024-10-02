@@ -1,8 +1,8 @@
 import datetime
 from airflow import models
 
-from airflow.operators import BashOperator
-from airflow.operators import PythonOperator
+from airflow.operators.bash import BashOperator
+from airflow.operators.python import PythonOperator
 
 default_dag_args={
     "start_date": datetime.datetime(2022,1,1)
@@ -25,9 +25,9 @@ with models.DAG (
                                         task_id="hello",
                                         python_callable=gretting
                                         )
-    # Bash operator
+
     bye_from_bash = BashOperator(
-                                task_id="hello",
+                                task_id="bye",
                                 bash_command="echo Goodbye."
                                         
                                 )

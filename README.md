@@ -34,3 +34,9 @@ gcloud composer environments create my-composer-env \
     --image-version composer-3-airflow-2.9.1-build.7
 
 ```
+
+To Deploy lets copy DAG.py file dags folder in composer enviornment.
+
+```bash
+gsutil cp DAG.py gs://us-central1-my-composer-env-844eed3e-bucket/dags
+```
