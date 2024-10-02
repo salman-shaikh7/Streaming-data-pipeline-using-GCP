@@ -25,7 +25,7 @@ with models.DAG (
                                         task_id="hello",
                                         python_callable=gretting
                                         )
-    
+    # Bash operator
     bye_from_bash = BashOperator(
                                 task_id="hello",
                                 bash_command="echo Goodbye."
