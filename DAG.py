@@ -34,7 +34,6 @@ with models.DAG (
         else:
             data=response.status_code
         
-        data = data.encode("utf-8")
         future = publisher.publish(topic_path, data)
         print(f"Published message ID: {future.result()}")
         return "Message published successfully"
