@@ -30,13 +30,13 @@ with models.DAG (
         api_url="https://randomuser.me/api/"
         response = requests.get(api_url)
         if response.status_code == 200:
-            data=response.json()
+            data=str(response.json())
         else:
-            data=response.status_code
+            data=str(response.status_code)
         
-        future = publisher.publish(topic_path, data)
+        future = publisher.publish(topic_path, data.encode("utf-8"))
         print(f"Published message ID: {future.result()}")
-        return "Message published successfully"
+        return None
 
 
     hello_from_bash = BashOperator(
@@ -51,7 +51,7 @@ with models.DAG (
 
     bye_from_bash = BashOperator(
                                 task_id="bye_task",
-                                bash_command="BYEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"       
+                                bash_command="echo BYEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"       
                                 )
     
     hello_from_bash >> Fetch_and_publish_data >> bye_from_bash
