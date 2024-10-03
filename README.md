@@ -40,3 +40,19 @@ To Deploy lets copy DAG.py file dags folder in composer enviornment.
 ```bash
 gsutil cp DAG.py gs://us-central1-my-composer-env-844eed3e-bucket/dags
 ```
+
+Create a topic 
+
+```bash
+gcloud pubsub topics create my-topic
+```
+```bash
+gcloud pubsub subscriptions create my-subscription --topic=my-topic
+```
+
+
+```bash
+gcloud beta composer environments list-packages \
+     my-composer-env \
+    --location us-central1
+````
